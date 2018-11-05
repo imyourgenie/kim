@@ -1,0 +1,20 @@
+with open ('c:/S/data.txt', 'r') as f:
+    data = f.read()
+
+
+lines=data.split('\n')
+for i in range(3109):
+    line = lines[i]
+    item=line.split()
+    seq=int(item[0])
+    n1=int(item[1])
+    n2=int(item[2])
+    n3=int(item[3])
+    s=int(item[4])
+    if s!=n1+n2+n3:
+        print('sum error:', s)
+    line2=lines[i+1]
+    item2=line2.split()
+    seq2=int(item2[0])
+    if not seq == seq2-1:
+        print('missed number:', seq2-1)
