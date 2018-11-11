@@ -1,2 +1,0 @@
-with open ('c:/S/data.txt', 'r') as f:
-    data = f.read()
