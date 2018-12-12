@@ -24,3 +24,4 @@ for k in range(0,10):
 
     movies=(k+1, name,n_audi,d_open)
     print(movies)
+    print()
