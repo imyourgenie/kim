@@ -1,0 +1,26 @@
+import requests
+date=input("날짜를 입력하세요: ")
+url='http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.xml?key=cd95826b2c2f7e743aca1fbbaf5c074c&targetDt=%s'%date
+r=requests.get(url)
+r.encoding='utf8'
+data=str(r.text)
+print('<', date, '의 영화 순위>')
+for k in range(0,10):
+    data=data[data.find('<weeklyBoxOffice>'):]
+    data2=data[:data.find('</weeklyBoxOffice>')]
+    data = data[data.find('</weeklyBoxOffice>'):]
+    
+    name = data2[data2.find('<movieNm>') + len('<movieNm>'):]
+    name = name[:name.find('</movieNm>')]
+    print(k+1, name)
+
+    n_audi = data2[data2.find('<audiAcc>') + len('<audiAcc>'):]
+    n_audi = n_audi[:n_audi.find('</audiAcc>')]
+    print('누적 관객수: ', n_audi)
+
+    d_open = data2[data2.find('<openDt>') + len('<openDt>'):]
+    d_open = d_open[:d_open.find('</openDt>')]
+    print('개봉일: ', d_open)
+
+    movies=(k+1, name,n_audi,d_open)
+    print(movies)
